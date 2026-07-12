@@ -6,9 +6,12 @@ resource "azurerm_logic_app_integration_account_partner" "logic_app_integration_
   resource_group_name      = each.value.resource_group_name
   metadata                 = each.value.metadata
 
-  business_identity {
-    qualifier = each.value.business_identity.qualifier
-    value     = each.value.business_identity.value
+  dynamic "business_identity" {
+    for_each = each.value.business_identity
+    content {
+      qualifier = business_identity.value.qualifier
+      value     = business_identity.value.value
+    }
   }
 }
 

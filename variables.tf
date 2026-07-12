@@ -17,10 +17,10 @@ EOT
     name                     = string
     resource_group_name      = string
     metadata                 = optional(string)
-    business_identity = object({
+    business_identity = list(object({
       qualifier = string
       value     = string
-    })
+    }))
   }))
   # --- Unconfirmed validation candidates, derived from azurerm_logic_app_integration_account_partner's provider source ---
   # Not auto-enabled: either a bespoke provider validator we can't safely translate,
