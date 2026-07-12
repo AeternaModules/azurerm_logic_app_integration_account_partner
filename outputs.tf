@@ -1,3 +1,7 @@
+output "logic_app_integration_account_partners_id" {
+  description = "Map of id values across all logic_app_integration_account_partners, keyed the same as var.logic_app_integration_account_partners"
+  value       = { for k, v in azurerm_logic_app_integration_account_partner.logic_app_integration_account_partners : k => v.id }
+}
 output "logic_app_integration_account_partners_business_identity" {
   description = "Map of business_identity values across all logic_app_integration_account_partners, keyed the same as var.logic_app_integration_account_partners"
   value       = { for k, v in azurerm_logic_app_integration_account_partner.logic_app_integration_account_partners : k => v.business_identity }
