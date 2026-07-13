@@ -22,6 +22,14 @@ EOT
       value     = string
     }))
   }))
+  validation {
+    condition = alltrue([
+      for k, v in var.logic_app_integration_account_partners : (
+        length(v.business_identity) >= 1
+      )
+    ])
+    error_message = "Each business_identity list must contain at least 1 items"
+  }
   # --- Unconfirmed validation candidates, derived from azurerm_logic_app_integration_account_partner's provider source ---
   # Not auto-enabled: either a bespoke provider validator we can't safely translate,
   # or a path that crosses a list-typed block (needs its own for_each wrapping).
